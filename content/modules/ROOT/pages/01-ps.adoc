@@ -1,4 +1,4 @@
-== What are processes?
+=== What are Processes?
 
 _Files_ keep track of information on a Linux system, providing a way for
 users to organize and store information. Sometimes, files contain
@@ -19,9 +19,22 @@ including those running without a controlling terminal. This command
 will also give information about the users associated with these
 processes.
 
-[source,bash,run]
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
 ----
 ps aux
+----
+
+.Output
+[source,text]
+----
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.7 186268 14440 ?        Ss   16:09   0:03 /usr/lib/systemd/systemd --switched-root --system --deserialize 17
+root           2  0.0  0.0      0     0 ?        S    16:09   0:00 [kthreadd]
+root           3  0.0  0.0      0     0 ?        I<   16:09   0:00 [rcu_gp]
+root           4  0.0  0.0      0     0 ?        I<   16:09   0:00 [rcu_par_gp]
+
+<< OUTPUT ABRIDGED >>
 ----
 
 This output is very extensive, so often when you call this command you
@@ -33,31 +46,44 @@ infinite zeros into a file that discards all inputs, so the process will
 continue indefinitely. The `+&+` sends the process into the background
 so that we do not interact with it in the terminal.
 
-[source,bash,run]
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
 ----
 dd if=/dev/zero of=/dev/null &
 ----
 
-When you run this command, you will not see an output as the process
-will continue running in the foreground until you interrupt it.
-Returning to the original terminal, run a search on `+ps aux+` to find
-this indefinite `+dd+` process:
+.Output
+[source,bash]
+----
+[1] 39999
+----
 
-[source,bash,run]
+NOTE: When you run this command, the process id is shown. This process will continue running in the foreground until you interrupt it.
+
+Run a search on `+ps aux+` to find this indefinite `+dd+` process:
+
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
 ----
 ps aux | head -n1 ; ps aux | grep '[d]d '
 ----
 
-____
-[!NOTE] The first command in this line will print the column headers for
+.Output
+[source,text]
+----
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root       39999 93.1  0.0   5620  1028 pts/0    R    14:29   0:07 dd if=/dev/zero of=/dev/null
+----
+
+NOTE: The first command in this line will print the column headers for
 `+ps aux+` so that you can see what each entry means. The second command
 searches for a process called `+dd+`, where the single quotes ensure the
 trailing space is part of the search criteria. Enclosing the first "`d`"
 in square brackets prevents the `+grep+` search from finding itself when
 it looks through the process list.
-____
 
-Take note of the second column, the Process ID. This ID is how you
-interact with the process, as it can be used in other commands as a
-unique reference to this process. Now you know how to find a process.
-The next step will walk you through terminating this indefinite process.
+Take note of the second column, the
+Process ID. This ID is how you interact with the process, as it can be
+used in other commands as a unique reference to this process. Now you
+know how to find a process. The next step will walk you through
+terminating this indefinite process.

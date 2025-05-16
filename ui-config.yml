@@ -5,19 +5,14 @@ antora:
   modules:
     - name: "01-ps"
       label: "Ps"
-      solveButton: true
     - name: "02-kill"
       label: "Kill"
-      solveButton: true
     - name: "03-service"
       label: "Service"
-      solveButton: true
     - name: "04-systemctl"
       label: "Systemctl"
-      solveButton: true
     - name: "05-restarting-services"
       label: "Restarting Services"
-      solveButton: true
 
 tabs:
   - name: ">_ terminal"

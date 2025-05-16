@@ -1,4 +1,4 @@
-== What is a service?
+=== What is a Service?
 
 The process you interacted with in the previous step was a foreground
 process. It ran in a terminal window where you could see it. Some
@@ -16,21 +16,39 @@ tell them to change their behavior.
 
 == Viewing the status of a service
 
-*firewalld* is a service which manages what network traffic to let into
-the system. Check the status of the *firewalld* service with the
+** Podman is a daemonless, open source, Linux native tool 
+designed to make it easy to find, run, build, share and deploy applications 
+using Open Containers Initiative (OCI) Containers and Container Images. 
+
+Check the status of the *podman* service with the
 following command:
 
-[source,bash,run]
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
 ----
-systemctl status firewalld.service --no-pager
+systemctl status podman.service --no-pager
 ----
 
-From this status message it is clear that the *firewalld* service is
-installed and active. But what is managing this service? It turns out
+.Output
+[source,text]
+----
+● podman.service - Podman API Service
+     Loaded: loaded (/usr/lib/systemd/system/podman.service; disabled; preset: disabled)
+     Active: inactive (dead)
+TriggeredBy: ○ podman.socket
+       Docs: man:podman-system-service(1)
+
+<< OUTPUT ABRIDGED >>
+----
+
+From this status message it is clear that the *podman* service is
+installed but inactive and disabled. 
+
+But what is managing this service? It turns out
 that another service, *systemd*, is in charge of managing all of the
 services on the system.
 
-== systemd vs. systemctl
+== *systemd* vs. *systemctl*
 
 When researching service management, you will come across two very
 similar terms: *systemd* and *systemctl*. These are very closely

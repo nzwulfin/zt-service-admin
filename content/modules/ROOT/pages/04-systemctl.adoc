@@ -1,4 +1,4 @@
-== Starting and enabling a service with systemctl
+=== Starting and Enabling a Service with systemctl
 
 For this example, you will be using the Network File System (NFS)
 service. This service allows users on client systems to view files and
@@ -9,35 +9,56 @@ configuration file changes.
 
 To begin, run the command to show the export list for the NFS server:
 
-[source,bash,run]
+NOTE: The below command is expected to fail and may take some time to complete.
+
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
 ----
 showmount -e
 ----
 
 This throws an error, because the NFS service is not running.
 
+.Output
+[source,text]
+----
+clnt_create: RPC: Program not registered
+----
+
 To solve this issue, you need to start the service. However, if you want
 the service to start each time you boot the system, you need to enable
 the service. You can do both of these operations in one line:
 
-[source,bash,run]
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
 ----
 systemctl enable --now nfs-server
 ----
 
-____
-_Note:_ If you just wanted to start a service, `+systemctl start+`
+.Output
+[source,text]
+----
+Created symlink /etc/systemd/system/multi-user.target.wants/nfs-server.service → /usr/lib/systemd/system/nfs-server.service
+----
+
+NOTE: If you just wanted to start a service, `+systemctl start+`
 followed by the service name will do the trick. However, the service
 will not start again if you reboot the system.
-____
 
 Now the *nfs-server* service is started, and it will start every time
 the system starts as well. Run the `+showmount+` command again now that
 the service is active:
 
-[source,bash,run]
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
 ----
 showmount -e
+----
+
+.Output
+[source,text,subs="+macros,+attributes"]
+----
+Export list for bastion.{{ guid }}.internal:
 ----
 
 The export list is currently blank, which is something controlled by a
