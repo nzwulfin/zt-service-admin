@@ -6,15 +6,8 @@ touch /root/post-run.log
 # Create a done file to signal we have finished
 touch /root/post-run.log.done
 
-subscription-manager register --activationkey=${ACTIVATION_KEY} --org=12451665 --force
-
-dnf install -y nfs-utils rpcbind
-
 echo "Adding wheel" > /root/post-run.log
 usermod -aG wheel rhel
-
-echo "setting password" >> /root/post-run.log
-echo redhat | passwd --stdin rhel
 
 #set up tmux so it has to restart itself whenever the system reboots
 
@@ -35,6 +28,5 @@ echo "@reboot ~/startup-tmux.sh" | crontab -
 
 #step 4: start tmux for the lab
 ~/startup-tmux.sh
-
 
 echo "DONE" >> /root/post-run.log
