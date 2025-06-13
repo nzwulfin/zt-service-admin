@@ -13,11 +13,7 @@ used to automatically find the process ID.
 kill $(pidof dd)
 ----
 
-.Output
-[source,text]
-----
-[1]+  Terminated              dd if=/dev/zero of=/dev/null
-----
+No output is expected for this command.
 
 Double check the process has terminated by looking for the `+dd+` process again.
 

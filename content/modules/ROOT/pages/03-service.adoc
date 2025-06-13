@@ -16,33 +16,35 @@ tell them to change their behavior.
 
 == Viewing the status of a service
 
-** Podman is a daemonless, open source, Linux native tool 
-designed to make it easy to find, run, build, share and deploy applications 
-using Open Containers Initiative (OCI) Containers and Container Images. 
+** The RHSM D-Bus service service provides the D-Bus API for interacting with subscription-manager. This service is executed on demand whenever a D-Bus method call to subscription-manager is performed, for example when using the Red Hat web console or the rhc Ansible system role. This service will exit on its own after a certain period of inactivity.
 
-Check the status of the *podman* service with the
+Check the status of the *rhsm* service with the
 following command:
 
 .Command
 [source,bash,subs="+macros,+attributes",role=execute]
 ----
-systemctl status podman.service --no-pager
+systemctl status rhsm.service --no-pager
 ----
 
 .Output
 [source,text]
 ----
-● podman.service - Podman API Service
-     Loaded: loaded (/usr/lib/systemd/system/podman.service; disabled; preset: disabled)
-     Active: inactive (dead)
-TriggeredBy: ○ podman.socket
-       Docs: man:podman-system-service(1)
+● rhsm.service - RHSM dbus service
+     Loaded: loaded (/usr/lib/systemd/system/rhsm.service; disabled; preset: disabled)
+     Active: active (running) since Fri 2025-06-13 14:59:44 EDT; 11min ago
+   Main PID: 5966 (rhsm-service)
+      Tasks: 2 (limit: 9956)
+     Memory: 34.5M
+        CPU: 802ms
+     CGroup: /system.slice/rhsm.service
+             └─5966 /usr/bin/python3 /usr/libexec/rhsm-service
 
 << OUTPUT ABRIDGED >>
 ----
 
-From this status message it is clear that the *podman* service is
-installed but inactive and disabled. 
+From this status message it is clear that the *rhsm* service is
+installed and active.
 
 But what is managing this service? It turns out
 that another service, *systemd*, is in charge of managing all of the
