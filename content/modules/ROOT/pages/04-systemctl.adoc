@@ -58,7 +58,7 @@ showmount -e
 .Output
 [source,text,subs="+macros,+attributes"]
 ----
-Export list for bastion.{{ guid }}.internal:
+Export list for rhel:
 ----
 
 The export list is currently blank, which is something controlled by a
