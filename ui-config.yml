@@ -15,5 +15,5 @@ antora:
       label: "Restarting Services"
 
 tabs:
-  - name: ">_ terminal"
-    url: /wetty
+  - name: ">_ root"
+    url: /wetty/ssh/root
