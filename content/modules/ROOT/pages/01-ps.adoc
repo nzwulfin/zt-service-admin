@@ -58,7 +58,7 @@ dd if=/dev/zero of=/dev/null &
 [1] 32915
 ----
 
-NOTE: When you run this command, the process id is shown. This process will continue running in the foreground until you interrupt it.
+NOTE: When you run this command, the process id is shown. This process will continue running in the background until you interrupt it.
 
 Run a search on `+ps aux+` to find this indefinite `+dd+` process:
 

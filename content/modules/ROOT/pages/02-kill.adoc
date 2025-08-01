@@ -30,7 +30,9 @@ USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
 [1]+  Terminated              dd if=/dev/zero of=/dev/null
 ----
 
-There is no output because the process has been killed.
+There is no `ps` output because the process is no longer running. 
+The `Terminated` output is from the shell's job control system 
+which was managing the `dd` process in the background. 
 
 The `+kill+` command can send a variety of signals. Calling the command
 without any options will default to `+-SIGTERM+`. This command will
