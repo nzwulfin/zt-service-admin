@@ -1,14 +1,14 @@
 ---
 virtualmachines:
   - name: "rhel"
-    image: "rhel-9.5"
-    memory: "2G"
+    image: "rhel-10-0-07-09-25-3"
+    bootloader: efi
     cores: 1
+    memory: "2G"
     image_size: "40G"
     packages:
       - nfs-utils
       - rpcbind
-      - tmux
     tags:
       - key: "AnsibleGroup"
         value: "bastions"

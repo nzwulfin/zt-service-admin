@@ -61,7 +61,8 @@ showmount -e
 Export list for rhel:
 ----
 
-The export list is currently blank, which is something controlled by a
+Nothing is currently shared via NFS, which results in a blank
+list. The filesystems exported by this host are controlled by a
 configuration file. You may assume that changing a config file would
 immediately lead to changes in the service, but this is not the case.
 The next step will walk you through restarting a service to reload
