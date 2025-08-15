@@ -14,3 +14,15 @@ virtualmachines:
         value: "bastions"
     networks:
       - default
+    services:
+      - name: node02-http
+        ports:
+          - port: 80
+            protocol: TCP
+            targetPort: 80
+            name: node02
+    routes:
+      - name: node02-web
+        host: node02
+        service: node02-http
+        targetPort: 80
